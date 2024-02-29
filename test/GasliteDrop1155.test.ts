@@ -5,18 +5,8 @@ import { Address, maxUint256 } from 'viem';
 const { deployContract, getPublicClient } = viem;
 
 // Airdrop data
-const airdropData = [
-  {
-    tokenId: BigInt(0),
-    airdropAmounts: [
-      {
-        amount: BigInt(100000),
-        recipients: ['0x4b4cb50369ABBb16212D50A79e1f1e06eF21cf6F' as Address],
-      },
-    ],
-  },
-];
-const IDS = [BigInt(0)];
+import airdropTokens from '../constants/airdropTokens.json';
+import totalAmounts from '../constants/totalAmounts.json';
 
 describe('GasliteDrop1155', function () {
   // Deploy a mock ERC1155, airdrop contracts, and prepare airdrop function
@@ -26,9 +16,10 @@ describe('GasliteDrop1155', function () {
 
     // Deploy contracts
     const mockERC1155 = await deployContract('MockERC1155', [
-      // Mint the max amount for each id
-      IDS,
-      Array.from({ length: IDS.length }, () => maxUint256),
+      // ids
+      Array.from({ length: totalAmounts.length }, (_, i) => BigInt(i)),
+      // amounts to batch mint
+      totalAmounts.map((amount) => BigInt(amount)),
     ]);
 
     const gasliteDrop1155 = await deployContract('GasliteDrop1155');
@@ -44,7 +35,16 @@ describe('GasliteDrop1155', function () {
       // Airdrop
       const txHash = await gasliteDrop1155.write.airdropERC1155([
         mockERC1155.address,
-        airdropData,
+        // Format types
+        airdropTokens.map((token) => ({
+          tokenId: BigInt(token.tokenId),
+          airdropAmounts: token.airdropAmounts.map((amount) => ({
+            amount: BigInt(amount.amount),
+            recipients: amount.recipients.map(
+              (recipient) => recipient as Address
+            ),
+          })),
+        })),
       ]);
       const txReceipt = await publicClient.waitForTransactionReceipt({
         hash: txHash,
@@ -66,7 +66,7 @@ describe('GasliteDrop1155', function () {
         deployMockAndContractFixture
       );
       const gasUsed = await airdropAndReturnGasUsed();
-      console.log(gasUsed);
+      console.log(gasUsed.toString());
     });
   });
 });

@@ -8,7 +8,7 @@ import {LibString} from "@solady/utils/LibString.sol";
 import {GasliteDrop1155} from "src/GasliteDrop1155.sol";
 import {MockERC1155} from "src/Mock.ERC1155.sol";
 
-/// @dev Run with `forge test --mt test_airdropERC1155_base --gas-report`
+/// @dev Run with `forge test --mt test_airdropERC1155_lowLevelCall --gas-report`
 
 contract GasliteDrop1155TestLowLevelCall is Test {
     GasliteDrop1155 gasliteDrop;
@@ -16,12 +16,11 @@ contract GasliteDrop1155TestLowLevelCall is Test {
 
     address CALLER = address(0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266);
 
-    GasliteDrop1155.AirdropToken[] airdropTokens;
-    uint256[] totalAmounts;
+    bytes airdropCallData;
 
     function setUp() public {
         // Retrieve airdrop data
-        (airdropTokens, totalAmounts) = getAirdropData();
+        (GasliteDrop1155.AirdropToken[] memory airdropTokens, uint256[] memory totalAmounts) = getAirdropData();
         uint256[] memory ids = new uint256[](totalAmounts.length);
         for (uint256 i = 0; i < totalAmounts.length; i++) {
             ids[i] = i;
@@ -35,15 +34,18 @@ contract GasliteDrop1155TestLowLevelCall is Test {
         gasliteDrop = new GasliteDrop1155();
         mockERC1155.setApprovalForAll(address(gasliteDrop), true);
         vm.stopPrank();
+
+        // Encode airdrop data (easier this way due to writing memory array to storage, etc)
+        airdropCallData = abi.encode(address(mockERC1155), airdropTokens);
     }
 
     // Caller: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
     // GasliteDrop1155: 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
     // MockERC1155: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-    function test_airdropERC1155_base() public {
+    function test_airdropERC1155_lowLevelCall() public {
         // Airdrop
         vm.prank(CALLER);
-        gasliteDrop.airdropERC1155(address(mockERC1155), airdropTokens);
+        address(gasliteDrop).call(airdropCallData);
     }
 
     /* -------------------------------------------------------------------------- */

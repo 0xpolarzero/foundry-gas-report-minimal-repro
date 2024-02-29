@@ -1,80 +1,22 @@
-## Run with Hardhat
+## How to run
 
-`pnpm hadhat test`
+1. Clone and install dependencies: `pnpm install` && `forge build`
 
-Gas used: 62127
+2. Modify the amount of recipients in [generateCallData.ts](./scripts/generateCallData.ts) and run `pnpm run generateCallData`
 
-## Run with Foundry
-
-`forge test -vvvv --isolate`
-
-Gas used: 57327
-
----
-
-## Foundry
-
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
-- **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
-- **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
-- **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
-- **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
+3. Run the tests with Hardhat and Foundry
 
 ```shell
-$ forge build
+$ pnpm hardhat test
+$ forge test --gas-report
+# or
+$ forge test -vvvv --isolate
 ```
 
-### Test
+## Notes/issues
 
-```shell
-$ forge test
-```
+### 1. `--gas-report` will ignore the contract when performing a low-level call to the airdrop contract.
 
-### Format
+See [GasliteDrop1155LowLevelCall.t.sol](./test/GasliteDrop1155LowLevelCall.t.sol).
 
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Run with `forge test --mt test_airdropERC1155_lowLevelCall --gas-report`.
