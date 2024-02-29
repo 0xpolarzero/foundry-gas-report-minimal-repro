@@ -4,8 +4,7 @@ import { Address, maxUint256 } from 'viem';
 
 const { deployContract, getPublicClient } = viem;
 
-// import airdropData from '../airdrop-data.json';
-
+// Airdrop data
 const airdropData = [
   {
     tokenId: BigInt(0),
@@ -17,8 +16,7 @@ const airdropData = [
     ],
   },
 ];
-
-const IDS = [BigInt(0) /* , BigInt(1) */];
+const IDS = [BigInt(0)];
 
 describe('GasliteDrop1155', function () {
   // Deploy a mock ERC1155, airdrop contracts, and prepare airdrop function
