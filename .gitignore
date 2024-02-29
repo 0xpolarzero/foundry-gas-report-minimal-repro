@@ -1,6 +1,10 @@
+node_modules
+
 # Compiler files
 cache/
+cache_hardhat/
 out/
+/artifacts
 
 # Ignores development broadcast logs
 !/broadcast
@@ -9,6 +13,10 @@ out/
 
 # Docs
 docs/
+
+# solidity-coverage files
+/coverage
+/coverage.json
 
 # Dotenv file
 .env
