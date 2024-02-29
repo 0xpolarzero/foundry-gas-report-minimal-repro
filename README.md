@@ -13,6 +13,16 @@ $ forge test --mt test_airdropERC1155_base --gas-report
 $ forge test --mt test_airdropERC1155_base -vvvv --isolate
 ```
 
+4. Deploy reference tx on Sepolia
+
+Add `RPC_URL_SEPOLIA` and `PRIVATE_KEY` to .env and run `source .env`.
+
+Then run:
+
+```shell
+forge script script/DeployAndAirdrop.s.sol:DeployAndAirdrop --rpc-url $RPC_URL_SEPOLIA --broadcast -vvvv
+```
+
 ## Notes/issues
 
 ### 1. `--gas-report` will ignore the contract when performing a low-level call to the airdrop contract.
