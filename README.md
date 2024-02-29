@@ -8,9 +8,9 @@
 
 ```shell
 $ pnpm hardhat test
-$ forge test --gas-report
+$ forge test --mt test_airdropERC1155_base --gas-report
 # or
-$ forge test -vvvv --isolate
+$ forge test --mt test_airdropERC1155_base -vvvv --isolate
 ```
 
 ## Notes/issues
