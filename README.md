@@ -51,7 +51,7 @@ The results, which would use the exact same data from [constants/airdropTokens.j
 
 ---
 
-### 2. (unrelated) `--gas-report` will ignore the contract when performing a low-level call to the airdrop contract.
+### (unrelated) `--gas-report` will ignore the contract when performing a low-level call to the airdrop contract.
 
 See [GasliteDrop1155LowLevelCall.t.sol](./test/GasliteDrop1155LowLevelCall.t.sol).
 
