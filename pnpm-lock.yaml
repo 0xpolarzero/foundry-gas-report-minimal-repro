@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@openzeppelin/contracts':
+    specifier: 4.9.3
+    version: 4.9.3
+  '@openzeppelin/contracts-upgradeable':
+    specifier: ^4.9.3
+    version: 4.9.3
   solady:
     specifier: ^0.0.168
     version: 0.0.168
@@ -841,6 +847,14 @@ packages:
       '@nomicfoundation/solidity-analyzer-win32-ia32-msvc': 0.1.1
       '@nomicfoundation/solidity-analyzer-win32-x64-msvc': 0.1.1
     dev: true
+
+  /@openzeppelin/contracts-upgradeable@4.9.3:
+    resolution: {integrity: sha512-jjaHAVRMrE4UuZNfDwjlLGDxTHWIOwTJS2ldnc278a0gevfXfPr8hxKEVBGFBE96kl2G3VHDZhUimw/+G3TG2A==}
+    dev: false
+
+  /@openzeppelin/contracts@4.9.3:
+    resolution: {integrity: sha512-He3LieZ1pP2TNt5JbkPA4PNT9WC3gOTOlDcFGJW4Le4QKqwmiNJCRt44APfxMxvq7OugU/cqYuPcSBzOw38DAg==}
+    dev: false
 
   /@scure/base@1.1.5:
     resolution: {integrity: sha512-Brj9FiG2W1MRQSTB212YVPRrcbjkv48FoZi/u4l/zds/ieRrqsh7aUf6CLwkAq61oKXr/ZlTzlY66gLIj3TFTQ==}

@@ -24,6 +24,8 @@
     "viem": "^1.15.1"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
     "solady": "^0.0.168"
   }
 }
