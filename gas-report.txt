@@ -1,0 +1,37 @@
+No files changed, compilation skipped
+
+Ran 1 test for test/GasliteDrop1155.t.sol:GasliteDrop1155TestBase
+[32m[PASS][0m test_airdropERC1155_base() (gas: 18257516)
+Suite result: [32mok[0m. [32m1[0m passed; [31m0[0m failed; [33m0[0m skipped; finished in 22.33ms (17.39ms CPU time)
+
+Ran 1 test for test/AirdropERC1155.t.sol:AirdropERC1155Base
+[32m[PASS][0m test_airdropERC1155_base() (gas: 20833794)
+Suite result: [32mok[0m. [32m1[0m passed; [31m0[0m failed; [33m0[0m skipped; finished in 23.69ms (18.77ms CPU time)
+| src/GasliteDrop1155.sol:GasliteDrop1155 contract |                 |          |          |          |         |
+|--------------------------------------------------|-----------------|----------|----------|----------|---------|
+| Deployment Cost                                  | Deployment Size |          |          |          |         |
+| 155822                                           | 529             |          |          |          |         |
+| Function Name                                    | min             | avg      | median   | max      | # calls |
+| airdropERC1155                                   | 14934491        | 14934491 | 14934491 | 14934491 | 1       |
+
+
+| src/Mock.ERC1155.sol:MockERC1155 contract |                 |       |        |       |         |
+|-------------------------------------------|-----------------|-------|--------|-------|---------|
+| Deployment Cost                           | Deployment Size |       |        |       |         |
+| 865460                                    | 4254            |       |        |       |         |
+| Function Name                             | min             | avg   | median | max   | # calls |
+| setApprovalForAll                         | 45942           | 45942 | 45942  | 45942 | 2       |
+
+
+| src/thirdweb/AirdropERC1155.sol:AirdropERC1155 contract |                 |          |          |          |         |
+|---------------------------------------------------------|-----------------|----------|----------|----------|---------|
+| Deployment Cost                                         | Deployment Size |          |          |          |         |
+| 1651481                                                 | 7514            |          |          |          |         |
+| Function Name                                           | min             | avg      | median   | max      | # calls |
+| airdropERC1155                                          | 14802928        | 14802928 | 14802928 | 14802928 | 1       |
+| initialize                                              | 144602          | 144602   | 144602   | 144602   | 1       |
+
+
+
+
+Ran 2 test suites in 33.10ms (46.02ms CPU time): [32m2[0m tests passed, [31m0[0m failed, [33m0[0m skipped (2 total tests)
